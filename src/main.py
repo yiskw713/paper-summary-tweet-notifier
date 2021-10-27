@@ -53,13 +53,13 @@ def main() -> None:
     text_list = format_tweet_data(tweet_data)
 
     # lineに通知
-    line_token = args.line_token or os.getenv("LINE_TOKEN")
+    line_token = os.getenv("LINE_TOKEN") or args.line_token
     if line_token is not None:
         notify_in_line(line_token, text_list)
 
     # slackに通知
-    slack_incoming_webhook_url = args.slack_incoming_webhook_url or os.getenv(
-        "SLACK_INCOMING_WEBHOOK_URL"
+    slack_incoming_webhook_url = (
+        os.getenv("SLACK_INCOMING_WEBHOOK_URL") or args.slack_incoming_webhook_url
     )
     if slack_incoming_webhook_url is not None:
         notify_in_slack(slack_incoming_webhook_url, text_list)
