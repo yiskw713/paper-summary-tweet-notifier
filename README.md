@@ -1,4 +1,4 @@
-# summary tweet notification
+# paper summary notification
 
 論文に関して言及をしている日本語ツイートや特定のアカウントからのツイートを，LINEやslackに通知するアプリです．<br>
 GitHub Actionsを使用して，1日に1回通知を行います．<br>
@@ -69,3 +69,7 @@ Twitter APIを利用して，スクリプトが実行された時間から1日�
 ## TODO
 
 - [ ] arXiv論文のカテゴリを使用して，興味のある分野の論文に関するツイートのみを通知する
+- [ ] Qiita / Zenn / Hatenablogで論文の解説をしているものを通知する (RSSフィードを取得し，通知する別アプリを作成した方が良い？)
+    - [ ] Qiita
+    - [ ] Zenn
+    - [ ] Hatenablog
