@@ -1,4 +1,4 @@
-# paper summary tweet notification
+# paper summary tweet notifier
 
 論文に関して言及をしている日本語ツイートや特定のアカウントからのツイートを，LINEやslackに通知するアプリです．<br>
 GitHub Actionsを使用して，1日に1回通知を行います．<br>
