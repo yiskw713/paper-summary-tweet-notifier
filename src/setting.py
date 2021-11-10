@@ -6,6 +6,10 @@ KEYWORDS = [
     "nips.cc",
     "icml.cc",
     "aclweb.org",
+    "github.com セグメンテーション",
+    "github.com segmentation",
+    "github.com 物体検出",
+    "github.com object detection",
 ]
 
 BLOCK_LIST = set(
