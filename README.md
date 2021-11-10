@@ -6,6 +6,9 @@ GitHub Actionsを使用して，1日に1回通知を行います．<br>
 
 ## 概要
 
+![image](https://user-images.githubusercontent.com/38214459/141119314-cfd12484-0593-4efc-802c-62e9c5d97520.png)
+
+
 本アプリの流れは以下の通りです．
 
 `GitHub Actionによるjob scheduling` -> `Twitter APIを使用したツイートの取得` -> `LINE / slackへの通知`
@@ -56,17 +59,64 @@ Twitter APIを利用して，スクリプトが実行された時間から1日�
 1. (任意) ツイートを取得する際のキーワードの設定
     * `src/setting.py`の中に検索したいキーワード(`KEYWORDS`)を設定できます．
     * デフォルトではいくつかの学会，及びarXivのURLが記載されています．
+
+    ```python
+    KEYWORDS = [
+        "openaccess.thecvf.com",
+        "arxiv.org",
+        "ojs.aaai.org",
+        "iclr.cc",
+        "nips.cc",
+        "icml.cc",
+        "aclweb.org",
+    ]
+    ```
+
 1. (任意) ツイートを通知したくないユーザーの設定
     * `src/setting.py`の中で，ツイートを通知したくないアカウント(`BLOCK_LIST`)を設定することができます．
     * デフォルトではいくつかの翻訳botを追加しております．
+
+    ```python
+    BLOCK_LIST = set(
+        [
+            "arXiv_cs_CV_ja",
+            "arXiv_cs_CL_ja",
+            "hackernewsj",
+        ]
+    )
+    ```
+
 1. (任意) ツイートを取得したいユーザーの設定
     * `src/setting.py`の中にツイートを取得したいユーザー(`USERS`)を設定できます．
     * デフォルトでは論文に関するツイートを多くしてくれるAKさん(@ak92501)からのツイートを取得するようになってます．
+
+    ```python
+    USERS = [
+        "ak92501",
+    ]
+    ```
+    
 1. (任意) 通知の日時の設定
     * `.github/workflows/notify.yml`の中の`cron`の値を変更することで，通知の日時を変更できます．
     * デフォルトでは日本時間の朝9時に通知されるようになっています．
 
+    ```yaml
+    name: paper-summary-tweet-notification
+
+    on:
+      schedule:
+        # 通知時間を変更したい場合は，以下を変更する
+        # UTC 0時 -> 日本時間朝9時
+        - cron:  '0 0 * * *'
+      workflow_dispatch:
+
+    ...
+    ```
+
 ## TODO
 
 - [ ] arXiv論文のカテゴリを使用して，興味のある分野の論文に関するツイートのみを通知する
+- [ ] 機械学習関連のGitHubレポジトリを引用しているツイートの取得
+- [ ] いいねやリツイート数での優先度付け
+- [ ] 取得漏れの原因調査
 
